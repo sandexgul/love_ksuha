@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f5">
+  <meta name="description" content="С днём рождения, Ксюша! Поздравление, любимые фотографии и письмо от всего сердца.">
+  <title>С днём рождения, Ксюша! ♡</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fffaf7;
+      --ink: #49363a;
+      --muted: #9c8588;
+      --rose: #d77f91;
+      --rose-dark: #b95e75;
+      --peach: #f5d6cb;
+      --line: rgba(130, 83, 87, .13);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100% - 34px, 600px);
+      margin-inline: auto;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 76px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(251, 224, 215, .72), transparent 34%),
+        radial-gradient(ellipse at 92% 78%, rgba(244, 218, 223, .65), transparent 34%),
+        var(--paper);
+    }
+
+    .hero::before, .hero::after {
+      content: "♡";
+      position: absolute;
+      color: rgba(211, 131, 146, .2);
+      font-family: var(--serif);
+      pointer-events: none;
+    }
+
+    .hero::before { font-size: 112px; top: 8%; left: -9px; transform: rotate(-17deg); }
+    .hero::after { font-size: 82px; right: 3%; bottom: 13%; transform: rotate(15deg); }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--rose-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      opacity: .55;
+    }
+
+    h1, h2, p { margin-top: 0; }
+
+    h1 {
+      margin: 22px 0 16px;
+      font: 400 clamp(58px, 17vw, 94px)/.95 var(--serif);
+      letter-spacing: -.065em;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 14px;
+      color: var(--rose-dark);
+      font-style: italic;
+      letter-spacing: -.055em;
+    }
+
+    .hero-copy {
+      max-width: 325px;
+      margin: 25px auto 30px;
+      color: #806b6e;
+      font: 17px/1.75 var(--serif);
+    }
+
+    .scroll-link {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 23px;
+      border: 1px solid rgba(185, 94, 117, .26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .64);
+      color: var(--rose-dark);
+      font-size: 13px;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .scroll-link:hover { transform: translateY(-2px); background: white; }
+    .scroll-link span { font-size: 18px; }
+
+    .section { padding: 86px 0; }
+
+    .section-heading { text-align: center; margin-bottom: 34px; }
+    .section-heading .eyebrow { margin-bottom: 13px; }
+
+    h2 {
+      margin-bottom: 11px;
+      font: 400 clamp(34px, 9vw, 46px)/1.08 var(--serif);
+      letter-spacing: -.045em;
+    }
+
+    .section-intro {
+      max-width: 360px;
+      margin: 0 auto;
+      color: var(--muted);
+      font: 16px/1.65 var(--serif);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      margin: 0;
+      aspect-ratio: .82;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: linear-gradient(145deg, #f8e9e3, #f2dfe1 55%, #f8eee6);
+      box-shadow: 0 8px 24px rgba(110, 75, 76, .055);
+    }
+
+    .photo-card:nth-child(2) { transform: translateY(17px); }
+    .photo-card:nth-child(3) { transform: translateY(-5px); }
+    .photo-card:nth-child(4) { transform: translateY(12px); }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 35% 0 0;
+      background: linear-gradient(transparent, rgba(48, 29, 34, .48));
+      pointer-events: none;
+    }
+
+    .photo-card img, .portrait img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-card figcaption {
+      position: absolute;
+      z-index: 1;
+      right: 12px;
+      bottom: 13px;
+      left: 12px;
+      color: white;
+      font: italic 16px var(--serif);
+      text-align: center;
+    }
+
+    .note {
+      margin: 38px 2px 0;
+      color: #927d80;
+      font-size: 12px;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .letter {
+      position: relative;
+      margin: 0 -2px;
+      padding: 29px 25px 27px;
+      border: 1px solid rgba(196, 146, 141, .24);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .65);
+      box-shadow: 0 12px 36px rgba(109, 75, 75, .045);
+    }
+
+    .letter::before {
+      content: "“";
+      position: absolute;
+      top: 1px;
+      right: 20px;
+      color: rgba(215, 127, 145, .35);
+      font: 76px/.9 var(--serif);
+    }
+
+    .letter p {
+      margin: 0;
+      color: #715c60;
+      font: 18px/1.85 var(--serif);
+    }
+
+    .letter p + p { margin-top: 16px; }
+    .letter .signoff { color: var(--rose-dark); font-style: italic; }
+
+    .confession {
+      padding: 75px 0 50px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(245, 214, 203, .5), transparent 62%);
+    }
+
+    .confession .eyebrow { margin-bottom: 16px; }
+
+    .portrait {
+      position: relative;
+      width: min(62vw, 226px);
+      aspect-ratio: .82;
+      margin: 27px auto 29px;
+      overflow: hidden;
+      border: 7px solid rgba(255, 255, 255, .8);
+      border-radius: 110px 110px 22px 22px;
+      background: linear-gradient(145deg, #f8e9e3, #efdadd 60%, #f8eee6);
+      box-shadow: 0 14px 36px rgba(113, 73, 78, .13);
+    }
+
+    .confession-title {
+      margin: 0 auto 15px;
+      color: var(--rose-dark);
+      font: italic 400 clamp(34px, 9vw, 48px)/1.16 var(--serif);
+      letter-spacing: -.045em;
+    }
+
+    .confession-copy {
+      max-width: 330px;
+      margin: 0 auto 23px;
+      color: #806b6e;
+      font: 16px/1.7 var(--serif);
+    }
+
+    .heart-stamp {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      border: 1px solid rgba(185, 94, 117, .25);
+      border-radius: 50%;
+      color: var(--rose-dark);
+      font-size: 19px;
+    }
+
+    footer {
+      padding: 20px 16px 30px;
+      color: #aa9698;
+      font: 13px var(--serif);
+      text-align: center;
+    }
+
+    @media (min-width: 520px) {
+      .hero::before { left: 7%; }
+      .gallery { gap: 18px; }
+      .letter { padding: 34px 35px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="page hero-inner">
+        <div class="eyebrow">сегодня твой день</div>
+        <h1 id="hero-title">С днём<br>рождения<span>Ксюша</span></h1>
+        <p class="hero-copy">Пусть впереди будет целый год поводов улыбаться. Сегодня — твой день, и он должен быть прекрасным.</p>
+        <a class="scroll-link" href="#photos">Твои моменты <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="section page" id="photos" aria-labelledby="photos-title">
+      <div class="section-heading">
+        <div class="eyebrow">четыре повода улыбнуться</div>
+        <h2 id="photos-title">Твои прекрасные<br>моменты</h2>
+        <p class="section-intro">Собрал здесь фотографии, которые напоминают, какая ты замечательная.</p>
+      </div>
+
+      <div class="gallery" aria-label="Фотографии Ксюши">
+        <figure class="photo-card">
+          <img src="./1.jpg" alt="Ксюша — фотография 1">
+          <figcaption>Твоя улыбка</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="./2.jpg" alt="Ксюша — фотография 2">
+          <figcaption>Самый светлый день</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="./3.jpg" alt="Ксюша — фотография 3">
+          <figcaption>Такая прекрасная</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="./4.jpg" alt="Ксюша — фотография 4">
+          <figcaption>Моё любимое фото</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section page" aria-labelledby="letter-title">
+      <div class="section-heading">
+        <div class="eyebrow">с любовью и нежностью</div>
+        <h2 id="letter-title">С днём рождения,<br>Ксюша!</h2>
+      </div>
+      <div class="letter">
+        <p>Ксюша, поздравляю тебя с днём рождения! Желаю, чтобы каждый день приносил повод улыбнуться, рядом всегда были любимые люди, а всё задуманное обязательно сбывалось.</p>
+        <p>Пусть в новом году твоей жизни будет много счастья, приятных сюрпризов, смеха и моментов, которые захочется вспоминать снова и снова. Ты заслуживаешь всего самого светлого и прекрасного.</p>
+        <p class="signoff">Оставайся такой же удивительной. Пусть этот день будет таким же прекрасным, как ты ♡</p>
+      </div>
+    </section>
+
+    <section class="confession" aria-labelledby="confession-title">
+      <div class="page">
+        <div class="eyebrow">самое главное</div>
+        <div class="portrait">
+          <img src="./5.jpg" alt="Фотография автора письма">
+        </div>
+        <h2 class="confession-title" id="confession-title">Ксюша, я тебя люблю</h2>
+        <p class="confession-copy">И хочу спросить тебя кое о чём…<br>Давай встречаться? ♡</p>
+        <div class="heart-stamp" aria-hidden="true">♥</div>
+      </div>
+    </section>
+  </main>
+  <footer>Сделано с теплом — специально для тебя ♡</footer>
+</body>
+</html>
