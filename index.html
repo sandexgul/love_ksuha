@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f5f0ff" />
+    <title>TakerVpn</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        background: #f5f0ff;
+        color: #8a57ba;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 280px;
+        height: var(--tg-viewport-height, 100vh);
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 15% 15%, #ffffff 0, transparent 42%),
+          radial-gradient(ellipse at 88% 85%, #dfceff 0, transparent 45%),
+          linear-gradient(135deg, #fffaff 0%, #f5f0ff 48%, #e9ddff 100%);
+      }
+
+      main {
+        height: var(--tg-viewport-height, 100vh);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: max(1.5rem, env(safe-area-inset-top)) 1.25rem
+          calc(4.5rem + env(safe-area-inset-bottom));
+        text-align: center;
+      }
+
+      p {
+        margin: 0;
+        color: #834df1;
+        font-size: clamp(0.9rem, 4vw, 1.15rem);
+        font-weight: 700;
+      }
+
+      .image-grid {
+        width: min(100%, 22rem);
+        flex: 1 1 0;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-content: start;
+        gap: 0.9rem;
+        margin-top: 1.75rem;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+      }
+
+      .image-placeholder {
+        aspect-ratio: 1;
+        border: 1px solid rgb(138 87 186 / 18%);
+        border-radius: 1.25rem;
+        background: rgb(255 255 255 / 48%);
+        box-shadow: 0 8px 24px rgb(87 57 133 / 7%);
+      }
+
+      .bottom-nav {
+        position: fixed;
+        z-index: 2;
+        bottom: max(0.75rem, env(safe-area-inset-bottom));
+        left: 50%;
+        width: min(calc(100% - 2.5rem), 22rem);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        transform: translateX(-50%);
+      }
+
+      .bottom-nav button {
+        min-height: 3rem;
+        border: 1px solid rgb(138 87 186 / 20%);
+        border-radius: 1rem;
+        background: rgb(255 255 255 / 65%);
+        color: #834df1;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.75rem, 12vw, 5.5rem);
+        font-weight: 750;
+        letter-spacing: -0.07em;
+        line-height: 1;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>TakerVpn</h1>
+      <p>Играй и зарабатывай дни к подписке</p>
+      <section class="image-grid" aria-label="Лента мест для будущих изображений">
+        <div class="image-placeholder" role="img" aria-label="Изображение 1"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 2"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 3"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 4"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 5"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 6"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 7"></div>
+        <div class="image-placeholder" role="img" aria-label="Изображение 8"></div>
+      </section>
+      <nav class="bottom-nav" aria-label="Основная навигация">
+        <button type="button">Игры</button>
+        <button type="button">История</button>
+      </nav>
+    </main>
+    <script>
+      const telegramApp = window.Telegram?.WebApp;
+      if (telegramApp) {
+        telegramApp.ready();
+        telegramApp.expand();
+        if (telegramApp.isVersionAtLeast("6.1")) {
+          telegramApp.setHeaderColor("#f5f0ff");
+          telegramApp.setBackgroundColor("#f5f0ff");
+        }
+      }
+    </script>
+  </body>
+</html>
